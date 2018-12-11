@@ -223,8 +223,9 @@ extension HeroContext {
 		view.layer.shadowPath = oldShadowPath
 		view.layer.shadowOpacity = oldShadowOpacity
 
+    guard let superView = view.superview else { return snapshot }
     snapshot.layer.anchorPoint = view.layer.anchorPoint
-    snapshot.layer.position = containerView.convert(view.layer.position, from: view.superview!)
+    snapshot.layer.position = containerView.convert(view.layer.position, from: superView)
     snapshot.layer.transform = containerView.layer.flatTransformTo(layer: view.layer)
     snapshot.layer.bounds = view.layer.bounds
     snapshot.hero.id = view.hero.id
